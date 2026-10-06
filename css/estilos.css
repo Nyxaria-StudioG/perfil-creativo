@@ -1,0 +1,854 @@
+/* =========================================================
+   TIPOGRAFÍA
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
+:root {
+
+    --card-width: min(80vw, 720px);
+
+
+    --primary: #32142F;
+
+    --secondary: #183B35;
+
+    --accent: #B79AC9;
+
+    --glass: rgba(50, 20, 47, 0.30);
+
+    --glass-border: rgba(183, 154, 201, 0.55);
+
+    --button-color: rgba(50, 20, 47, 0.92);
+
+    --button-hover: rgba(24, 59, 53, 0.96);
+
+    --text: #ffffff;
+}
+
+
+html {
+    min-height: 100%;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    min-height: 100vh;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    font-family: Arial, sans-serif;
+
+    background: var(--primary);
+}
+
+
+/* =========================================================
+   FONDO RESPONSIVE
+========================================================= */
+
+.background-image {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -2;
+
+    object-fit: cover;
+
+    object-position: center center;
+
+    pointer-events: none;
+
+    /*
+       Mantiene el renderizado normal de la imagen
+       sin forzar una interpolación artificial.
+    */
+
+    image-rendering: auto;
+}
+
+
+/* =========================================================
+   CAPA SUAVE SOBRE EL FONDO
+========================================================= */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    background: rgba(24, 59, 53, 0.10);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTENEDOR GENERAL
+========================================================= */
+
+.page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding:
+        clamp(110px, 13vh, 170px)
+        0
+        clamp(35px, 6vh, 80px);
+
+    gap: clamp(55px, 7vh, 85px);
+}
+
+
+/* =========================================================
+   TARJETA PRINCIPAL
+========================================================= */
+
+.profile-card {
+
+    position: relative;
+
+    width: var(--card-width);
+
+    min-height: auto;
+
+    padding:
+        185px
+        clamp(25px, 5vw, 55px)
+        65px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    background: var(--glass);
+
+    border: 2px solid var(--glass-border);
+
+    border-radius: 12px;
+
+    backdrop-filter: blur(3px);
+
+    -webkit-backdrop-filter: blur(3px);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.15);
+
+    animation:
+        cardAppear 1s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* =========================================================
+   FOTO DE PERFIL
+========================================================= */
+
+.profile-photo {
+
+    position: absolute;
+
+    top: -105px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 210px;
+    height: 210px;
+
+    border-radius: 50%;
+
+    padding: 5px;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 8px 30px rgba(24, 59, 53, 0.25);
+
+    animation:
+        profileAppear 1.1s cubic-bezier(.22, 1, .36, 1);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   IMAGEN DE PERFIL
+========================================================= */
+
+.profile-photo img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    /*
+       Mantiene las proporciones originales
+       y utiliza el algoritmo de interpolación
+       normal del navegador.
+    */
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 50%;
+
+    image-rendering: auto;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.profile-info {
+
+    width: 100%;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   NOMBRE — GLOOCK
+========================================================= */
+
+.profile-info h1 {
+
+    font-family: "Gloock", serif;
+
+    font-size: clamp(42px, 6vw, 65px);
+
+    line-height: 1;
+
+    font-weight: 400;
+
+    font-style: normal;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 20px;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PROFESIÓN
+========================================================= */
+
+.profession {
+
+    font-size: clamp(17px, 2vw, 22px);
+
+    font-weight: 400;
+
+    opacity: .90;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   USUARIO
+========================================================= */
+
+.username {
+
+    margin-top: 40px;
+
+    font-size: clamp(16px, 2vw, 21px);
+
+    font-weight: 400;
+
+    color: var(--accent);
+}
+
+
+/* =========================================================
+   SEPARADOR PUNTEADO
+========================================================= */
+
+.separator {
+
+    width: 255px;
+
+    max-width: 70%;
+
+    height: 4px;
+
+    margin: 25px auto 42px;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(183, 154, 201, .95) 2px,
+            transparent 2.5px
+        );
+
+    background-size: 10px 4px;
+
+    background-repeat: repeat-x;
+}
+
+
+/* =========================================================
+   CONTENEDOR DE BOTONES
+========================================================= */
+
+.links {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 45px;
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.link-button {
+
+    position: relative;
+
+    width: 88%;
+
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: var(--button-color);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: clamp(17px, 2vw, 23px);
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+
+    border: 1px solid rgba(183, 154, 201, 0.20);
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, .10);
+
+    cursor: pointer;
+
+    transition:
+        transform .25s cubic-bezier(.22, 1, .36, 1),
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+
+/* =========================================================
+   BRILLO QUE PASA POR EL BOTÓN
+========================================================= */
+
+.link-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 70%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(183, 154, 201, .55),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left .65s ease;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+.link-button:hover::before {
+
+    left: 150%;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.link-button:hover {
+
+    background: var(--button-hover);
+
+    transform:
+        translateY(-4px)
+        scale(1.015);
+
+    box-shadow:
+        0 10px 25px rgba(24, 59, 53, 0.25);
+}
+
+
+/* =========================================================
+   EFECTO AL TOCAR
+========================================================= */
+
+.link-button.pressed {
+
+    transform:
+        scale(.94)
+        translateY(2px);
+
+    background: var(--accent);
+
+    color: var(--primary);
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, .20);
+}
+
+
+/* =========================================================
+   ESTUDIO HYPNOS — ESTADO NORMAL
+========================================================= */
+
+/*
+   El texto existe, pero está deliberadamente
+   oculto/desenfocado.
+
+   Esto hace que el botón parezca "incompleto"
+   hasta que se interactúa con él.
+*/
+
+.coming-soon .button-normal {
+
+    position: relative;
+
+    z-index: 1;
+
+    opacity: .18;
+
+    filter: blur(6px);
+
+    transform: scale(1.03);
+
+    transition:
+        opacity .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+
+/* =========================================================
+   TEXTO PRÓXIMAMENTE
+========================================================= */
+
+.coming-soon .button-coming {
+
+    position: absolute;
+
+    z-index: 4;
+
+    opacity: 0;
+
+    transform:
+        translateY(8px)
+        scale(.95);
+
+    color: var(--accent);
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+
+/* =========================================================
+   VELO SOBRE ESTUDIO HYPNOS
+========================================================= */
+
+.coming-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(50, 20, 47, .15),
+            rgba(183, 154, 201, .12),
+            rgba(50, 20, 47, .15)
+        );
+
+    backdrop-filter: blur(1px);
+
+    -webkit-backdrop-filter: blur(1px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .4s ease;
+}
+
+
+/* =========================================================
+   ESTUDIO HYPNOS — ACTIVADO
+========================================================= */
+
+.coming-soon.show-coming {
+
+    background: var(--button-hover);
+}
+
+
+/* Oculta el nombre */
+
+.coming-soon.show-coming .button-normal {
+
+    opacity: 0;
+
+    filter: blur(12px);
+
+    transform: scale(.96);
+}
+
+
+/* Muestra PRÓXIMAMENTE */
+
+.coming-soon.show-coming .button-coming {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* Retira el velo */
+
+.coming-soon.show-coming .coming-overlay {
+
+    opacity: 0;
+}
+
+
+/* =========================================================
+   ANIMACIONES DE ENTRADA
+========================================================= */
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(45px)
+            scale(.97);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes profileAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(-30px)
+            scale(.75);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    :root {
+        --card-width: 82vw;
+    }
+
+
+    .page {
+
+        padding-top: 115px;
+    }
+
+
+    .profile-card {
+
+        padding-top: 165px;
+
+        padding-bottom: 55px;
+    }
+
+
+    .profile-photo {
+
+        width: 175px;
+        height: 175px;
+
+        top: -88px;
+    }
+
+
+    .links {
+
+        gap: 30px;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    :root {
+        --card-width: 86vw;
+    }
+
+
+    .page {
+
+        padding-top: 95px;
+
+        gap: 35px;
+    }
+
+
+    .profile-card {
+
+        padding:
+            125px
+            18px
+            40px;
+
+        border-radius: 10px;
+    }
+
+
+    .profile-photo {
+
+        width: 135px;
+        height: 135px;
+
+        top: -68px;
+
+        padding: 4px;
+    }
+
+
+    .profile-info h1 {
+
+        font-size:
+            clamp(34px, 10vw, 48px);
+
+        letter-spacing: -1px;
+
+        margin-bottom: 14px;
+    }
+
+
+    .profession {
+
+        font-size: 15px;
+    }
+
+
+    .username {
+
+        margin-top: 28px;
+
+        font-size: 15px;
+    }
+
+
+    .separator {
+
+        margin-top: 20px;
+
+        margin-bottom: 30px;
+    }
+
+
+    .links {
+
+        gap: 20px;
+    }
+
+
+    .link-button {
+
+        width: 92%;
+
+        min-height: 52px;
+
+        font-size: 14px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .coming-soon .button-coming {
+
+        font-size: 13px;
+
+        letter-spacing: 2px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    :root {
+        --card-width: 90vw;
+    }
+
+
+    .profile-card {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .profile-photo {
+
+        width: 120px;
+        height: 120px;
+
+        top: -60px;
+    }
+
+
+    .link-button {
+
+        width: 94%;
+
+        min-height: 48px;
+
+        font-size: 12px;
+    }
+
+
+    .coming-soon .button-coming {
+
+        font-size: 11px;
+
+        letter-spacing: 1.5px;
+    }
+}
