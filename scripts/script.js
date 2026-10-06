@@ -65,7 +65,7 @@ document.querySelectorAll(".link-button").forEach(button => {
 
 
 /* =========================================================
-   ESTUDIO HYPNOS — PRÓXIMAMENTE
+   ESTUDIO HYPNOS — ESTRELLITAS + PRÓXIMAMENTE
 ========================================================= */
 
 const comingSoonButton =
@@ -75,78 +75,279 @@ const comingSoonButton =
 if (comingSoonButton) {
 
 
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
     let comingSoonTimeout;
 
 
-    comingSoonButton.addEventListener("click", function(event) {
-
-        /*
-            Evita que el enlace intente abrir "#".
-        */
-
-        event.preventDefault();
+    const starsContainer =
+        comingSoonButton.querySelector(".stars-container");
 
 
-        /*
-            Si ya estaba mostrando
-            PRÓXIMAMENTE, reiniciamos el temporizador.
-        */
+
+    /* =====================================================
+       ESTRELLAS
+    ===================================================== */
+
+    const symbols = [
+        "✦",
+        "✧",
+        "⋆",
+        "✦",
+        "·"
+    ];
+
+
+    const starCount = 18;
+
+
+
+    /* =====================================================
+       CREAR LAS ESTRELLAS
+    ===================================================== */
+
+    for (let i = 0; i < starCount; i++) {
+
+
+        const star =
+            document.createElement("span");
+
+
+        star.classList.add("star");
+
+
+        /* ---------------------------------------------
+           Símbolo aleatorio
+        --------------------------------------------- */
+
+        star.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() * symbols.length
+                )
+            ];
+
+
+
+        /* ---------------------------------------------
+           POSICIÓN
+        --------------------------------------------- */
+
+        star.style.left =
+            `${Math.random() * 94 + 3}%`;
+
+
+        star.style.top =
+            `${Math.random() * 70 + 15}%`;
+
+
+
+        /* ---------------------------------------------
+           TAMAÑO
+        --------------------------------------------- */
+
+        star.style.fontSize =
+            `${Math.random() * 7 + 7}px`;
+
+
+
+        /* ---------------------------------------------
+           MOVIMIENTO
+        --------------------------------------------- */
+
+        star.style.setProperty(
+            "--x1",
+            `${Math.random() * 10 - 5}px`
+        );
+
+
+        star.style.setProperty(
+            "--y1",
+            `${Math.random() * 8 - 4}px`
+        );
+
+
+        star.style.setProperty(
+            "--x2",
+            `${Math.random() * 20 - 10}px`
+        );
+
+
+        star.style.setProperty(
+            "--y2",
+            `${Math.random() * 14 - 7}px`
+        );
+
+
+        star.style.setProperty(
+            "--x3",
+            `${Math.random() * 10 - 5}px`
+        );
+
+
+        star.style.setProperty(
+            "--y3",
+            `${Math.random() * 8 - 4}px`
+        );
+
+
+
+        /* ---------------------------------------------
+           ESCALA
+        --------------------------------------------- */
+
+        star.style.setProperty(
+            "--scale",
+            `${Math.random() * 0.55 + 0.65}`
+        );
+
+
+
+        /* ---------------------------------------------
+           BRILLO / OPACIDAD
+        --------------------------------------------- */
+
+        star.style.setProperty(
+            "--opacity-min",
+            `${Math.random() * 0.20 + 0.35}`
+        );
+
+
+        star.style.setProperty(
+            "--opacity-mid",
+            `${Math.random() * 0.25 + 0.55}`
+        );
+
+
+        star.style.setProperty(
+            "--opacity-max",
+            `${Math.random() * 0.25 + 0.75}`
+        );
+
+
+
+        /* ---------------------------------------------
+           VELOCIDAD
+        --------------------------------------------- */
+
+        star.style.setProperty(
+            "--duration",
+            `${Math.random() * 3 + 3}s`
+        );
+
+
+
+        /* ---------------------------------------------
+           DESFASE
+        --------------------------------------------- */
+
+        star.style.setProperty(
+            "--delay",
+            `${Math.random() * -6}s`
+        );
+
+
+
+        /* ---------------------------------------------
+           AGREGAR AL BOTÓN
+        --------------------------------------------- */
+
+        starsContainer.appendChild(star);
+
+    }
+
+
+
+    /* =====================================================
+       FUNCIÓN PARA MOSTRAR PRÓXIMAMENTE
+    ===================================================== */
+
+    function showComingSoon() {
+
+
+        /* Cancela temporizador anterior */
 
         clearTimeout(comingSoonTimeout);
 
 
-        /*
-            Activa el estado.
-        */
+        /* Activa el estado */
 
-        comingSoonButton.classList.add("show-coming");
+        comingSoonButton.classList.add(
+            "show-coming"
+        );
 
 
-        /*
-            Después de unos segundos
-            vuelve al estado original.
-        */
+        /* ---------------------------------------------
+           Después de 2,5 segundos
+           vuelve a las estrellas
+        --------------------------------------------- */
 
-        comingSoonTimeout = setTimeout(() => {
+        comingSoonTimeout =
+            setTimeout(() => {
 
-            comingSoonButton.classList.remove("show-coming");
+                comingSoonButton.classList.remove(
+                    "show-coming"
+                );
 
-        }, 2500);
+            }, 2500);
 
-    });
+    }
+
+
+
+    /* =====================================================
+       CLICK / TOQUE
+    ===================================================== */
+
+    comingSoonButton.addEventListener(
+        "click",
+        function(event) {
+
+
+            /*
+                Evita que href="#"
+                lleve la página hacia arriba.
+            */
+
+            event.preventDefault();
+
+
+            showComingSoon();
+
+        }
+    );
+
 
 
     /* =====================================================
        ACCESIBILIDAD — TECLADO
     ===================================================== */
 
-    comingSoonButton.addEventListener("keydown", function(event) {
-
-        /*
-            Permite activar el botón con
-            Enter o barra espaciadora.
-        */
-
-        if (
-            event.key === "Enter" ||
-            event.key === " "
-        ) {
-
-            event.preventDefault();
-
-            clearTimeout(comingSoonTimeout);
-
-            comingSoonButton.classList.add("show-coming");
+    comingSoonButton.addEventListener(
+        "keydown",
+        function(event) {
 
 
-            comingSoonTimeout = setTimeout(() => {
+            /*
+                Enter o barra espaciadora.
+            */
 
-                comingSoonButton.classList.remove("show-coming");
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
 
-            }, 2500);
+
+                event.preventDefault();
+
+
+                showComingSoon();
+
+            }
 
         }
-
-    });
+    );
 
 }
